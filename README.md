@@ -88,8 +88,10 @@ public Result findCollect(final QueryMap qMap) {
 	
     return result;
 }
-	
-//============= Hibernate4.x begin ============================================
+
+
+//===========================================================================================	
+//============= Hibernate4.x getConnection begin ============================================
 	
 	super.getCurrentSession().doWork(new Work() {  
 	    public void execute(Connection connection) { 
@@ -111,7 +113,7 @@ public Result findCollect(final QueryMap qMap) {
 	    	Log.i("result", result);
 	    }
 	});
-//============= Hibernate4.x end ============================================
+//============= Hibernate4.x getConnection end ============================================
 	
 	return result;
 } 
