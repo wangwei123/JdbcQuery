@@ -8,6 +8,7 @@ JdbcQuery is easy to process jdbc operation, get result list, list map, list arr
 ```java
 String strSql = "{call callcenter_pack.Get_TaskCaseCount(:P_UserID,:P_ErrorInfo,:P_OutData)}";
 JdbcQuery query = JdbcUtils.createNativeQuery(super.getConnection(), strSql);
+
 query.setParameter("P_UserID", 5);
 query.setOutParameter("P_ErrorInfo", OracleTypes.VARCHAR);	    
 query.setOutParameter("P_OutData", OracleTypes.CURSOR);
