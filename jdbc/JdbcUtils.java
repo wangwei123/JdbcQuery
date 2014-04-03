@@ -16,7 +16,7 @@ public class JdbcUtils
         return new JdbcQueryImpl(conn, strSql);
     }
     
-    public static JdbcQuery createNativeQuery(Connection conn, String strSql, Map<Object,Object> params)
+    public static JdbcQuery createNativeQuery(Connection conn, String strSql, Map<String,Object> params)
     {
         return new JdbcQueryImpl(conn, strSql, params);
     }
@@ -28,7 +28,7 @@ public class JdbcUtils
     }
 	
 	public static JdbcQuery createNativeQuery(Connection conn, String strSql,
-            Class classType, Map<Object,Object> params)
+            Class classType, Map<String,Object> params)
     {
         return new JdbcQueryImpl(conn, strSql, classType, params);
     }

@@ -57,7 +57,7 @@ public abstract class AbstractJdbcQueryImpl implements JdbcQuery {
 		validateConnction();
 	}
 	
-	public AbstractJdbcQueryImpl(Connection conn, String strSql, Map<Object,Object> params) {
+	public AbstractJdbcQueryImpl(Connection conn, String strSql, Map<String,Object> params) {
 		clearMap();
 		this.conn = conn;
 		this.strSql = strSql;
@@ -75,7 +75,7 @@ public abstract class AbstractJdbcQueryImpl implements JdbcQuery {
 	}
 	
 	public AbstractJdbcQueryImpl(Connection conn, String strSql,
-			Class<?> classType, Map<Object,Object> params) {
+			Class<?> classType, Map<String,Object> params) {
 		clearMap();
 		this.conn = conn;
 		this.strSql = strSql;
@@ -84,9 +84,9 @@ public abstract class AbstractJdbcQueryImpl implements JdbcQuery {
 		validateConnction();
 	}
 
-	public void setParameters(Map<Object, Object> params) {
-		for(Object key : params.keySet()) {
-			if(strSql.indexOf(scolon+key.toString()) == -1) 
+	public void setParameters(Map<String, Object> params) {
+		for(String key : params.keySet()) {
+			if(strSql.indexOf(scolon+key) == -1) 
 				continue;
 			
 			Object value = params.get(key);

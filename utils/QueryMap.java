@@ -11,7 +11,7 @@ import java.util.Map;
  * 封装后的HashMap，方便获取值
  * @author 王威
  */
-public class QueryMap extends HashMap<Object, Object>{
+public class QueryMap extends HashMap<String, Object>{
 	
 	/**
 	 * 
@@ -27,12 +27,12 @@ public class QueryMap extends HashMap<Object, Object>{
 		this.setMap(map);
 	}
 	
-	public QueryMap(Object key, Object value){
+	public QueryMap(String key, Object value){
 		this.put(key, value);
 	}
 	
 	@Override
-	public Object put(Object key, Object value){
+	public Object put(String key, Object value){
 		if(value instanceof java.sql.Date){
 			java.sql.Date sdate = (java.sql.Date)value;
 			java.util.Date udate = new Date();
@@ -44,8 +44,8 @@ public class QueryMap extends HashMap<Object, Object>{
 		return value;
 	}
 	
-	public void convertsInt(Object...keys){
-		for(Object key: keys){
+	public void convertsInt(String...keys){
+		for(String key: keys){
 			Object value = this.getInteger(key);
 			this.setProperty(key, value);
 		}
@@ -67,89 +67,84 @@ public class QueryMap extends HashMap<Object, Object>{
 		this.convertsDate(key);
 	}
 	
-	public void setProperty(Object key,Object value){
+	public void setProperty(String key,Object value){
 		this.put(key, value);
 	}
 	
-	public void setKeys(Object...keys){
-		for(Object key : keys){
+	public void setKeys(String...keys){
+		for(String key : keys){
 			this.setProperty(key, null);
 		}
 	}
 	
-	public String getLeftLikeValue(Object key){
+	public String getLeftLikeValue(String key){
 		String value = this.getString(key);
 		value = value+"%";
 		return value;
 	}
 	
-	public String getLikeValue(Object key){
+	public String getLikeValue(String key){
 		String value = this.getString(key);
 		value = "%"+value+"%";
 		return value;
 	}
 	
 	public void emptyAllValues(){
-		for(Object key : this.keySet()){
+		for(String key : this.keySet()){
 			this.put(key, null);
 		}
 	}
 	
-	public Boolean isEmpty(Object key){
-		Log.i("key=>"+key);
+	public Boolean isEmpty(String key){
 		if(super.containsKey(key)){
 			Object value = super.get(key);
 			if(value == null){
-				Log.i(key+" 1 true");
 				return true;
 			}else if("".equals(String.valueOf(value).trim())){
-				Log.i(key+" 2 true");
 				return true;
 			}
-			Log.i(key+" 3 false");
 			return false;
 		}
-		Log.i(key+" 4 true");
 		return true;
 	}
 	
-	public Boolean isNotEmpty(Object key){
+	public Boolean isNotEmpty(String key){
 		return !this.isEmpty(key);
 	}
 	
-	public Object getObject(Object key){
+	public Object getObject(String key){
 		return super.get(key);
 	}
 	
-	public <T> T getClsObject(Object key, Class<T> objClass){
+	public <T> T getClsObject(String key, Class<T> objClass){
 		return (T)this.get(key);
 	}
 	
-	public String getString(Object key){
+	public String getString(String key){
 		return super.get(key).toString();
 	}
 	
-	public Integer getInteger(Object key){
+	public Integer getInteger(String key){
 		Object value = this.get(key);
 		if("".equals(value) || value == null)return null;
 		
 		return Integer.parseInt(value.toString());
 	} 
 	
-	public Double getDouble(Object key){
+	public Double getDouble(String key){
 		return Double.parseDouble(this.getString(key));
 	}
 	
-	public Float getFloat(Object key){
+	public Float getFloat(String key){
 		return Float.parseFloat(this.getString(key));
 	}
 	
-	public Boolean getBoolean(Object key){
+	public Boolean getBoolean(String key){
 		return Boolean.parseBoolean(this.getString(key));
 	}
 	
-	public void convertsDateTime(Object...keys){
-		for(Object key: keys){
+	public void convertsDateTime(String...keys){
+		for(String key: keys){
 			if(this.isEmpty(key)) continue;
 			
 			Object value = this.get(key);
@@ -160,8 +155,8 @@ public class QueryMap extends HashMap<Object, Object>{
 		}
 	}
 	
-	public void convertsDate(Object...keys){
-		for(Object key: keys){
+	public void convertsDate(String...keys){
+		for(String key: keys){
 			if(this.isEmpty(key)) continue;
 			
 			Object value = this.get(key);
@@ -172,7 +167,7 @@ public class QueryMap extends HashMap<Object, Object>{
 		}
 	}
 	
-	public Date getDate(Object key,String datePattern){
+	public Date getDate(String key,String datePattern){
 		if(datePattern == null) datePattern = "yyyy-MM-dd";
 		SimpleDateFormat df = new SimpleDateFormat(datePattern, Locale.UK);
 		Object value = super.get(key);
@@ -190,15 +185,15 @@ public class QueryMap extends HashMap<Object, Object>{
 		return (Date)value;
 	}
 	
-	public Date getDate(Object key){
+	public Date getDate(String key){
 		return this.getDate(key, null);
 	}
 	
-	public String getDateString(Object key){
+	public String getDateString(String key){
 		return this.getDateString(key, null);
 	}
 	
-	public String getDateString(Object key,String datePattern){
+	public String getDateString(String key,String datePattern){
 		if(datePattern == null) datePattern = "yyyy-MM-dd";
 		SimpleDateFormat df = new SimpleDateFormat(datePattern, Locale.UK);
 		Object value = super.get(key);
@@ -221,7 +216,7 @@ public class QueryMap extends HashMap<Object, Object>{
 	public void setMap(Map<?,?> map) {
 		for(Object key : map.keySet()) {
 			Object[] value = (Object[])map.get(key);
-			this.setProperty(key, value[0]);
+			this.setProperty(key.toString(), value[0]);
 		}
 	}
 	

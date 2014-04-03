@@ -18,7 +18,7 @@ public interface JdbcQuery
 
     public abstract void setParameter(int parameterIndex, Object value);
     
-    public abstract void setParameters(Map<Object, Object> params);
+    public abstract void setParameters(Map<String, Object> params);
 
     public abstract void setParameter(String parameterName, Object value,
             boolean isDbFunction);

@@ -26,7 +26,7 @@ public class JdbcQueryImpl extends AbstractJdbcQueryImpl {
 		super(conn, strSql);
 	}
 	
-	public JdbcQueryImpl(Connection conn, String strSql, Map<Object,Object> params) {
+	public JdbcQueryImpl(Connection conn, String strSql, Map<String,Object> params) {
 		super(conn, strSql, params);
 	}
 
@@ -34,7 +34,7 @@ public class JdbcQueryImpl extends AbstractJdbcQueryImpl {
 		super(conn, strSql, classType);
 	}
 	
-	public JdbcQueryImpl(Connection conn, String strSql, Class<?> classType, Map<Object,Object> params) {
+	public JdbcQueryImpl(Connection conn, String strSql, Class<?> classType, Map<String,Object> params) {
 		super(conn, strSql, classType, params);
 	}
 
