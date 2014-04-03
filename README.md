@@ -4,9 +4,10 @@ JdbcQuery
 JdbcQuery is easy to process jdbc operation, get result list, list map, list array, and very easy to call a produce. if you are using hibernate, I think you need JdbcQuery to make up hibernate, because hibernate is not enough for jdbc.
 
 1. code example for call procedure:
-      String strSql = "{call callcenter_pack.Get_TaskCaseCount(:P_UserID,:P_ErrorInfo,:P_OutData)}";
-    	JdbcQuery query = JdbcUtils.createNativeQuery(super.getConnection(), strSql);
-    	query.setParameter("P_UserID", 5);
+
+      	    String strSql = "{call callcenter_pack.Get_TaskCaseCount(:P_UserID,:P_ErrorInfo,:P_OutData)}";
+    	    JdbcQuery query = JdbcUtils.createNativeQuery(super.getConnection(), strSql);
+    	    query.setParameter("P_UserID", 5);
 	    query.setOutParameter("P_ErrorInfo", OracleTypes.VARCHAR);	    
 	    query.setOutParameter("P_OutData", OracleTypes.CURSOR);
 	    query.excuteProcedure();
@@ -23,7 +24,9 @@ JdbcQuery is easy to process jdbc operation, get result list, list map, list arr
 	    
 	    
 2. code example for call sql command:
-public Result findCollect(final QueryMap qMap) {
+
+
+		public Result findCollect(final QueryMap qMap) {
 		
 		final StringBuilder sb = new StringBuilder();
 		StringBuilder sbWhere = new StringBuilder();
@@ -83,3 +86,6 @@ public Result findCollect(final QueryMap qMap) {
 		
 		return result;
 	} 
+	
+	
+	
