@@ -28,7 +28,9 @@ query.closeCallableStatement();
 2. code example for call sql command:
 -------
 ```java
+
 public Result findCollect(final QueryMap qMap) {
+
 	final StringBuilder sb = new StringBuilder();
 	StringBuilder sbWhere = new StringBuilder();
 	
@@ -51,7 +53,8 @@ public Result findCollect(final QueryMap qMap) {
 	// page
 	sb.append(sbWhere).append("limit :pageStart,:pageSize");
 	
-	// QueryMap is a strong Map, it support easy to type convert, For example: String to Integer、String to Date ect.
+	// QueryMap is a strong Map, it support easy to type convert, 
+	// For example: String to Integer、String to Date ect.
 	qMap.convertsInt("pageIndex", "pageSize");
 
 	// count to get pageStart parameter for sql: limit :pageStart,:pageSize
