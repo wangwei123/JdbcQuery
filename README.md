@@ -68,6 +68,29 @@ public Result findCollect(final QueryMap qMap) {
 	qMap.setProperty("storeName", qMap.getLikeValue("storeName")); 
 	
 	final Result result = new Result();
+	
+    // get hibernate's datasource connection
+    // set methond's params: connection, sql, params
+    JdbcQuery query = JdbcUtils.createNativeQuery(super.getSession().connection, countSQL, qMap);
+    // get count
+    int count = query.getCount();
+    
+    // set methond's params: connection, sql, params
+    JdbcQuery querys = JdbcUtils.createNativeQuery(super.getSession().connection, sb.toString(), qMap);
+    // get result list<? extends HashMap>
+    List<?> list = querys.getResultList();
+    
+    // set the count and list to result.
+    result.setTotal(count);
+    result.setData(list);
+    
+    Log.i("result", result);
+	
+    return result;
+}
+	
+//============= Hibernate4.x begin ============================================
+	
 	super.getCurrentSession().doWork(new Work() {  
 	    public void execute(Connection connection) { 
 	    	// get hibernate's datasource connection
@@ -88,6 +111,7 @@ public Result findCollect(final QueryMap qMap) {
 	    	Log.i("result", result);
 	    }
 	});
+//============= Hibernate4.x end ============================================
 	
 	return result;
 } 
