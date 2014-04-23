@@ -1,7 +1,7 @@
 JdbcQuery
 =========
 
-dbcQuery是一个对JDBC操作进行封装，使得在JAVA中执行复杂的SQL语句和存储过程变得像hibernate一样的简单,并能方便的将结果集以List、Map、Array的形式返回。
+JdbcQuery是一个对JDBC操作进行封装，使得在JAVA中执行复杂的SQL语句和存储过程变得像hibernate一样的简单,并能方便的将结果集以List、Map、Array的形式返回。
 
 1. 调用存储过程示例:
 -------
